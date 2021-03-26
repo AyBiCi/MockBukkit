@@ -52,10 +52,7 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerLevelChangeEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
@@ -248,7 +245,7 @@ public class PlayerMock extends LivingEntityMock implements Player, SoundReceive
 	{
 		Location respawnLocation = getBedSpawnLocation();
 		boolean isBedSpawn = respawnLocation != null;
-		
+
 		// TODO: Respawn Anchors are not yet supported.
 		boolean isAnchorSpawn = false;
 
@@ -264,6 +261,13 @@ public class PlayerMock extends LivingEntityMock implements Player, SoundReceive
 		setHealth(getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 		setLocation(event.getRespawnLocation().clone());
 		alive = true;
+	}
+
+	public void moveInstantly(Location moveLocation) {
+		PlayerMoveEvent event = new PlayerMoveEvent(this, this.getLocation(), moveLocation);
+		Bukkit.getPluginManager().callEvent(event);
+		if(event.isCancelled() == false)
+			this.setLocation(moveLocation.clone());
 	}
 
 	@Override
@@ -1025,7 +1029,7 @@ public class PlayerMock extends LivingEntityMock implements Player, SoundReceive
 	{
 		heardSounds.add(new AudioExperience(sound, category, location, volume, pitch));
 	}
-	
+
 	@Override
 	public @NotNull List<AudioExperience> getHeardSounds()
 	{
