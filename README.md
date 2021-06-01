@@ -50,13 +50,13 @@ repositories {
 }
 
 dependencies {
-	testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:0.25.0'
+	testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
 }
 ```
 
-Note: use v1.13-SNAPSHOT to test a Bukkit 1.13 plugin or any other version if the branch exists.
+Note: use `v1.13-SNAPSHOT` to test a Bukkit 1.13 plugin or any other version if the [branch](https://github.com/MockBukkit/MockBukkit/branches) exists.
 These branches will not be receiving patches actively, but any issues will be resolved and any pull requests on them will be accepted.
-This is because backporting every single patch on every branch is incredibely time consuming and slows down the development of Mockbukkit.
+This is because backporting every single patch on every branch is incredibly time consuming and slows down the development of Mockbukkit.
 
 If you prefer to always have the latest Git version or need a specific commit/branch, you can always use JitPack as your maven repository:
 
@@ -79,15 +79,15 @@ You won't need to add any additional repositories since MockBukkit is served via
   <dependency>
     <groupId>com.github.seeseemelk</groupId>
     <artifactId>MockBukkit-v1.16</artifactId>
-    <version>0.25.0</version>
+    <version>1.0.0</version>
     <scope>test</scope>
   </dependency>
 </dependencies>
 ```
 
-Note: use v1.13-SNAPSHOT to test a Bukkit 1.13 plugin or any other version if the branch exists.
+Note: use `v1.13-SNAPSHOT` to test a Bukkit 1.13 plugin or any other version if the [branch](https://github.com/MockBukkit/MockBukkit/branches) exists.
 These branches will not be receiving patches actively, but any issues will be resolved and any pull requests on them will be accepted.
-This is because backporting every single patch on every branch is incredibely time consuming and slows down the development of Mockbukkit.
+This is because backporting every single patch on every branch is incredibly time consuming and slows down the development of Mockbukkit.
 
 The `scope` test is important here since you are likely to only be using MockBukkit during the `test` stage of your Maven lifecycle and not in your final product.
 
